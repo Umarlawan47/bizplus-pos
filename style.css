@@ -107,3 +107,64 @@ label{display:grid;gap:7px;font-weight:600;font-size:13px}input,select,textarea{
     max-width: 100%;
   }
 }
+/* MOBILE RESPONSIVE FIX */
+@media (max-width: 768px) {
+  .app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .sidebar {
+    position: static;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    padding: 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .sidebar nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .sidebar nav a,
+  .sidebar nav button {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .main {
+    width: 100%;
+    min-width: 0;
+    margin-left: 0;
+    padding: 12px;
+  }
+
+  .logout-btn {
+    position: static !important;
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .page {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .card {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .topbar {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
