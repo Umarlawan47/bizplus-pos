@@ -33,3 +33,77 @@ label{display:grid;gap:7px;font-weight:600;font-size:13px}input,select,textarea{
 @media(max-width:1000px){.stats{grid-template-columns:repeat(2,1fr)}.dashboard-grid,.pos-layout{grid-template-columns:1fr}.product-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:760px){.auth-shell{grid-template-columns:1fr}.auth-brand{display:none}.sidebar{width:72px}.side-brand span,.nav button span,.logout-btn span{display:none}.nav button{text-align:center}.main{margin-left:72px;width:calc(100% - 72px);padding:16px}.stats{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.form-grid .wide{grid-column:auto}}
 @media(max-width:480px){.stats{grid-template-columns:1fr}.product-grid{grid-template-columns:1fr 1fr}.topbar h1{font-size:22px}}
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+  .app {
+    display: block;
+    min-height: 100vh;
+  }
+
+  .sidebar {
+    position: static;
+    width: 100%;
+    min-height: auto;
+    padding: 12px;
+  }
+
+  .sidebar nav {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .sidebar a,
+  .sidebar button {
+    display: inline-block;
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .main {
+    width: 100%;
+    margin-left: 0;
+    padding: 16px;
+  }
+
+  .topbar {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .pos-layout,
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    width: 100%;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding: 10px;
+  }
+
+  .sidebar {
+    padding: 8px;
+  }
+
+  .topbar h1 {
+    font-size: 20px;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    max-width: 100%;
+  }
+}
