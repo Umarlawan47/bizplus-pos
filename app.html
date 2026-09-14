@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BizPlus POS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="side-brand"><div class="side-mark">B+</div><span>BizPlus</span></div>
+    <nav class="nav">
+      <button class="active" data-page="dashboard"><span>▦</span> Dashboard</button>
+      <button data-page="pos"><span>🛒</span> POS</button>
+      <button data-page="products"><span>📦</span> Products</button>
+      <button data-page="inventory"><span>▤</span> Inventory</button>
+      <button data-page="customers"><span>👥</span> Customers</button>
+      <button data-page="expenses"><span>💳</span> Expenses</button>
+      <button data-page="reports"><span>📊</span> Reports</button>
+      <button data-page="support"><span>💬</span> Customer Care</button>
+      <button data-page="settings"><span>⚙</span> Settings</button>
+    </nav>
+    <div class="sidebar-bottom"><button id="logoutBtn" class="logout-btn"><span>↪</span> Logout</button></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><h1 id="pageTitle">Dashboard</h1><div class="muted" id="welcomeText">Good morning</div></div>
+      <div class="card" style="padding:9px 13px"><strong id="businessName">BizPlus</strong></div>
+    </header>
+
+    <section id="page-dashboard" class="page active">
+      <div class="grid stats">
+        <div class="card"><div class="stat-label">Today's Sales</div><div id="todaySales" class="stat-value">₦0</div></div>
+        <div class="card"><div class="stat-label">Today's Profit</div><div id="todayProfit" class="stat-value">₦0</div></div>
+        <div class="card"><div class="stat-label">Weekly Sales</div><div id="weekSales" class="stat-value">₦0</div></div>
+        <div class="card"><div class="stat-label">Weekly Profit</div><div id="weekProfit" class="stat-value">₦0</div></div>
+        <div class="card"><div class="stat-label">Monthly Sales</div><div id="monthSales" class="stat-value">₦0</div></div>
+        <div class="card"><div class="stat-label">Monthly Profit</div><div id="monthProfit" class="stat-value">₦0</div></div>
+        <div class="card"><div class="stat-label">Yearly Sales</div><div id="yearSales" class="stat-value">₦0</div></div>
+        <div class="card"><div class="stat-label">Yearly Profit</div><div id="yearProfit" class="stat-value">₦0</div></div>
+      </div>
+      <div class="grid dashboard-grid">
+        <div class="card">
+          <div class="section-head"><h3>Sales Overview</h3><div class="range-buttons"><button class="active" data-range="week">Week</button><button data-range="month">Month</button><button data-range="year">Year</button></div></div>
+          <div id="salesChart" class="bar-chart"></div>
+        </div>
+        <div class="card"><div class="section-head"><h3>Low Stock</h3></div><div id="lowStockList"></div></div>
+      </div>
+      <div class="card" style="margin-top:16px"><div class="section-head"><h3>Recent Sales</h3><button class="text-btn" data-page-link="reports">View reports</button></div><div id="recentSales"></div></div>
+    </section>
+
+    <section id="page-pos" class="page">
+      <div class="pos-layout">
+        <div class="card">
+          <div class="toolbar"><input id="posSearch" placeholder="Search products..."><select id="posCategory"><option value="">All categories</option></select></div>
+          <div id="posProducts" class="product-grid"></div>
+        </div>
+        <div class="card">
+          <div class="section-head"><h3>Current Sale</h3><button id="clearCart" class="text-btn">Clear</button></div>
+          <div id="cart"></div>
+          <div class="total-box">
+            <div class="total-line"><span>Subtotal</span><strong id="cartSubtotal">₦0</strong></div>
+            <label>Discount<input id="saleDiscount" type="number" min="0" value="0"></label>
+            <label>Customer<select id="saleCustomer"><option value="">Walk-in customer</option></select></label>
+            <div class="total-line grand"><span>Total</span><strong id="cartTotal">₦0</strong></div>
+            <label>Payment method<select id="paymentMethod"><option>Cash</option><option>Card</option><option>Transfer</option></select></label>
+            <button id="completeSale" class="primary-btn full">Complete Sale</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="page-products" class="page">
+      <div class="toolbar"><input id="productSearch" placeholder="Search products..."><button id="addProductBtn" class="primary-btn">+ Add Product</button></div>
+      <div class="card"><div id="productsTable"></div></div>
+    </section>
+
+    <section id="page-inventory" class="page">
+      <div class="card"><div class="section-head"><h3>Inventory</h3><button id="refreshInventory" class="text-btn">Refresh</button></div><div id="inventoryTable"></div></div>
+    </section>
+
+    <section id="page-customers" class="page">
+      <div class="toolbar"><input id="customerSearch" placeholder="Search customers..."><button id="addCustomerBtn" class="primary-btn">+ Add Customer</button></div>
+      <div class="card"><div id="customersTable"></div></div>
+    </section>
+
+    <section id="page-expenses" class="page">
+      <div class="toolbar"><button id="addExpenseBtn" class="primary-btn">+ Add Expense</button></div>
+      <div class="card"><div id="expensesTable"></div></div>
+    </section>
+
+    <section id="page-reports" class="page">
+      <div class="card"><div class="section-head"><h3>Business Reports</h3><button id="printReport" class="primary-btn">Print</button></div>
+        <div class="toolbar"><input id="reportFrom" type="date"><input id="reportTo" type="date"><button id="runReport" class="primary-btn">Run Report</button></div>
+        <div class="grid stats"><div class="card"><div class="stat-label">Sales</div><div id="reportSales" class="stat-value">₦0</div></div><div class="card"><div class="stat-label">Profit</div><div id="reportProfit" class="stat-value">₦0</div></div><div class="card"><div class="stat-label">Expenses</div><div id="reportExpenses" class="stat-value">₦0</div></div><div class="card"><div class="stat-label">Orders</div><div id="reportOrders" class="stat-value">0</div></div></div>
+        <div id="reportDetails" style="margin-top:16px"></div>
+      </div>
+    </section>
+
+    <section id="page-support" class="page">
+      <div class="grid dashboard-grid">
+        <div class="card">
+          <div class="section-head"><h3>Contact BizPlus Support</h3></div>
+          <form id="ticketForm" class="form-grid">
+            <label>Subject<input id="ticketSubject" required placeholder="What do you need help with?"></label>
+            <label>Category<select id="ticketCategory"><option>Technical issue</option><option>Account</option><option>Billing</option><option>Feature request</option><option>Other</option></select></label>
+            <label class="wide">Message<textarea id="ticketMessage" rows="5" required placeholder="Describe your issue..."></textarea></label>
+            <button class="primary-btn" type="submit">Submit Ticket</button>
+          </form>
+        </div>
+        <div class="card faq"><h3>Help Center</h3>
+          <details><summary>How do I add a product?</summary><p class="muted">Open Products and select Add Product. Enter the selling price, cost price and stock.</p></details>
+          <details><summary>How is profit calculated?</summary><p class="muted">Profit is calculated from selling total minus the recorded cost of products sold.</p></details>
+          <details><summary>Can I change my business details?</summary><p class="muted">Yes. Use Settings to update your business profile.</p></details>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px"><h3>My Support Tickets</h3><div id="ticketsList"></div></div>
+    </section>
+
+    <section id="page-settings" class="page">
+      <div class="card"><h3>Business Settings</h3><form id="settingsForm" class="form-grid" style="margin-top:18px">
+        <label>Full name<input id="settingsName"></label><label>Business name<input id="settingsBusiness"></label>
+        <label>Phone<input id="settingsPhone"></label><label>Currency<select id="settingsCurrency"><option value="NGN">NGN — ₦</option><option value="USD">USD — $</option><option value="GHS">GHS — ₵</option></select></label>
+        <label class="wide">Business address<textarea id="settingsAddress" rows="3"></textarea></label>
+        <button class="primary-btn" type="submit">Save Settings</button>
+      </form></div>
+    </section>
+  </main>
+</div>
+
+<div id="modal" class="modal"><div class="modal-card"><div class="modal-head"><h3 id="modalTitle">Add</h3><button id="closeModal" class="icon-btn">×</button></div><div id="modalBody"></div></div></div>
+<div id="toast" class="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
